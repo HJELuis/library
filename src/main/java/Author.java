@@ -13,4 +13,13 @@ public class Author {
         this.publishedBooks = publishedBooks;
     }
 
+    @Override
+    public String toString() {
+        return "Author{" +
+                "name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", biography='" + biography + '\'' +
+                ", publishedBooks=" + publishedBooks +
+                '}';
+    }
 }

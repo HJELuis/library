@@ -1,11 +1,14 @@
 public class Book {
     private String title;
-    //private Author author;
+    private Author author;
     private short year;
     private int ISBN;
 
-    public Book(String title, short year, int ISBN) {
+    public Book() {}
+
+    public Book(String title, Author author, short year, int ISBN) {
         this.title = title;
+        this.author = author;
         this.year = year;
         this.ISBN = ISBN;
     }
@@ -16,6 +19,10 @@ public class Book {
 
     public short getYear() {
         return year;
+    }
+
+    public Author getAuthor() {
+        return author;
     }
 
     public int getISBN() {
@@ -34,10 +41,15 @@ public class Book {
         this.ISBN = ISBN;
     }
 
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
                 "title='" + title + '\'' +
+                ", author=" + author +
                 ", year=" + year +
                 ", ISBN=" + ISBN +
                 '}';
