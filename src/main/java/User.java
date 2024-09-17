@@ -12,4 +12,13 @@ public class User {
         this.password = password;
         this.borrowedBooks = borrowedBooks;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        User user = (User) obj;
+        return this.email.equals(user.email);
+    }
+
 }

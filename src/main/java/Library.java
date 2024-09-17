@@ -14,6 +14,10 @@ public class Library {
         this.users = users;
     }
 
+    /*
+    ===== Área de métodos para la colección books =====
+    */
+
     protected void addBook(Book book) {
         if(!this.books.contains(book)){
             this.books.add(book);
@@ -74,6 +78,76 @@ public class Library {
 
     protected void removeBook(int isbn) {
         this.books.remove(this.getBook(isbn));
+    }
+
+    /*
+    ===== Área de métodos para la colección authors ====
+    */
+
+    protected void addAuthor(Author author) {
+        if(!this.authors.contains(author)){
+            this.authors.add(author);
+        } else {
+            System.out.println("That author is already in the library");
+        }
+    }
+
+    protected Author getAuthor(String name, String lastName){
+        Stream<Author> authorStream = this.authors.stream();
+
+        Optional<Author> optional = authorStream.
+                filter(author -> author.getName().equals(name))
+                .filter(author -> author.getLastName().equals(lastName))
+                .findFirst();
+
+        Author author = new Author();
+
+        try {
+            if(optional.isPresent()) author = optional.get();
+        } catch(NoSuchElementException e) {
+            System.out.println(e + "This author isn't available");
+        }
+
+        return author;
+    }
+
+    /**
+     * @param name
+     * @param lastName
+     * @param biography
+     * @param publishedBooks
+     *
+     * updteAuthor() método sobrecargado que necesita de un nombre y un apellido
+     */
+    protected void updateAuthor(String name, String lastName, String biography, Set<Book> publishedBooks) {
+        Author author = this.getAuthor(name, lastName);
+
+        author.setName(name);
+        author.setLastName(lastName);
+        author.setBiography(biography);
+        author.setPublishedBooks(publishedBooks);
+
+    }
+
+    protected void updateAuthor(String name, String lastName, String biography) {
+        Author author = this.getAuthor(name, lastName);
+
+        author.setName(name);
+        author.setLastName(lastName);
+        author.setBiography(biography);
+
+    }
+
+    protected void updateAuthor(String name, String lastName) {
+        Author author = this.getAuthor(name, lastName);
+
+        author.setName(name);
+        author.setLastName(lastName);
+
+    }
+
+    protected void removeAuthor(String name, String lastName) {
+        this.authors.remove(this.getAuthor(name,lastName));
     }
     
 }
