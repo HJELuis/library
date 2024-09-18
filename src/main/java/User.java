@@ -13,12 +13,47 @@ public class User {
         this.borrowedBooks = borrowedBooks;
     }
 
+    public User() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Set<Book> getBorrowedBooks() {
+        return borrowedBooks;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setBorrowedBooks(Set<Book> borrowedBooks) {
+        this.borrowedBooks = borrowedBooks;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         User user = (User) obj;
-        return this.email.equals(user.email);
+        return this.password.equals(user.password);
     }
 
 }

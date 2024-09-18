@@ -149,5 +149,65 @@ public class Library {
     protected void removeAuthor(String name, String lastName) {
         this.authors.remove(this.getAuthor(name,lastName));
     }
+
+    /*
+    ===== Área de métodos para la colección users ====
+    */
+
+    protected void addUser(User user) {
+        if(!this.users.contains(user)){
+            this.users.add(user);
+        } else {
+            System.out.println("That user is already registered");
+        }
+    }
+
+    protected User getUser(String name, String password){
+        Stream<User> userStream = this.users.stream();
+
+        Optional<User> optional = userStream.
+                filter(user -> user.getName().equals(name))
+                .filter(user -> user.getPassword().equals(password))
+                .findFirst();
+
+        User user = new User();
+
+        try {
+            if(optional.isPresent()) user = optional.get();
+        } catch(NoSuchElementException e) {
+            System.out.println(e + "This user isn't registered");
+        }
+
+        return user;
+    }
+
+
+    /**
+     * @param name
+     * @param email
+     * @param password
+     * @param borrowedBooks
+     *
+     * updteUser() método sobrecargado que necesita de un nombre y una contraseña
+     */
+
+    protected void updateUser(String name, String email, String password, Set<Book> borrowedBooks) {
+        User user = this.getUser(name, password);
+
+        user.setName(name);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setBorrowedBooks(borrowedBooks);
+    }
+
+    protected void updateUser(String name, String email, String password) {
+        User user = this.getUser(name, password);
+
+        user.setName(name);
+        user.setEmail(email);
+        user.setPassword(password);
+    }
+
+
     
 }
