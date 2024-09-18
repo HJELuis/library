@@ -1,12 +1,12 @@
 public class Book {
     private String title;
-    private Author author;
+    private String author;
     private short year;
-    private int ISBN;
+    private long ISBN;
 
     public Book() {}
 
-    public Book(String title, Author author, short year, int ISBN) {
+    public Book(String title, String author, short year, long ISBN) {
         this.title = title;
         this.author = author;
         this.year = year;
@@ -21,11 +21,11 @@ public class Book {
         return year;
     }
 
-    public Author getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public int getISBN() {
+    public long getISBN() {
         return ISBN;
     }
 
@@ -37,11 +37,11 @@ public class Book {
         this.year = year;
     }
 
-    public void setISBN(int ISBN) {
+    public void setISBN(long ISBN) {
         this.ISBN = ISBN;
     }
 
-    public void setAuthor(Author author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 

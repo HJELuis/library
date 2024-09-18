@@ -14,6 +14,9 @@ public class Library {
         this.users = users;
     }
 
+    public Library() {
+    }
+
     /*
     ===== Área de métodos para la colección books =====
     */
@@ -26,7 +29,7 @@ public class Library {
         }
     }
 
-    protected Book getBook(int isbn){
+    protected Book getBook(long isbn){
         Stream<Book> bookStream = this.books.stream();
 
         Optional<Book> optional = bookStream.
@@ -36,9 +39,9 @@ public class Library {
         Book book = new Book();
 
         try {
-            if(optional.isPresent()) book = optional.get();
+             book = optional.get();
         } catch(NoSuchElementException e) {
-            System.out.println(e + "This book isn't available");
+            System.out.print("This book isn't available ");
         }
 
         return book;
@@ -54,7 +57,7 @@ public class Library {
      * updteBook() método sobrecargado que necesita de un isbn
      */
 
-    protected void updateBook(int isbn, String newTitle, Author newAuthor, short newYear) {
+    protected void updateBook(long isbn, String newTitle, String newAuthor, short newYear) {
         Book book = this.getBook(isbn);
 
         book.setTitle(newTitle);
@@ -63,20 +66,20 @@ public class Library {
     }
 
 
-    protected void updateBook(int isbn, String newTitle, Author newAuthor) {
+    protected void updateBook(long isbn, String newTitle, String newAuthor) {
         Book book = this.getBook(isbn);
 
         book.setTitle(newTitle);
         book.setAuthor(newAuthor);
     }
 
-    protected void updateBook(int isbn, String newTitle) {
+    protected void updateBook(long isbn, String newTitle) {
         Book book = this.getBook(isbn);
 
         book.setTitle(newTitle);
     }
 
-    protected void removeBook(int isbn) {
+    protected void removeBook(long isbn) {
         this.books.remove(this.getBook(isbn));
     }
 
@@ -103,9 +106,9 @@ public class Library {
         Author author = new Author();
 
         try {
-            if(optional.isPresent()) author = optional.get();
+            author = optional.get();
         } catch(NoSuchElementException e) {
-            System.out.println(e + "This author isn't available");
+            System.out.println("This author isn't available ");
         }
 
         return author;
@@ -173,9 +176,9 @@ public class Library {
         User user = new User();
 
         try {
-            if(optional.isPresent()) user = optional.get();
+            user = optional.get();
         } catch(NoSuchElementException e) {
-            System.out.println(e + "This user isn't registered");
+            System.out.println("This user isn't registered ");
         }
 
         return user;
